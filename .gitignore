@@ -1,0 +1,17 @@
+# Arquivos e pastas temporárias de compilação
+build/
+temp/
+pkg/
+scratch/
+LFS/
+
+# Imagens de disco grandes (ISOs e IMGs)
+*.iso
+*.img
+*.vmdk
+*.qcow2
+
+# Logs e caches
+*.log
+.cache/
+.bash_history
