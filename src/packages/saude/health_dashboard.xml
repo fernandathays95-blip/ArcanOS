@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sys_health_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <FrameLayout style="@style/HealthMetricCard">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/metric_heart_rate"
+                android:textColor="@color/sys_text_secondary"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_heart_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:text="75 bpm"
+                android:textColor="@color/sys_text_primary"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
+        </FrameLayout>
+
+        <FrameLayout style="@style/HealthMetricCard">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/metric_steps"
+                android:textColor="@color/sys_text_secondary"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_steps_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:text="10,240"
+                android:textColor="@color/sys_color_accent"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
+        </FrameLayout>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data_sources_header"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/sys_text_primary_dark"
+            android:textSize="18sp"/>
+
+        <Switch
+            android:id="@+id/switch_wearable_sync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sync_wearable_text"
+            android:textColor="@color/sys_text_primary"
+            android:textSize="16sp"
+            android:paddingVertical="12dp"/>
+
+        <Button
+            android:id="@+id/btn_manage_permissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manage_health_permissions"
+            android:layout_marginTop="10dp"
+            style="@style/ArcanosButtonOutline"/>
+
+    </LinearLayout>
+</ScrollView>
