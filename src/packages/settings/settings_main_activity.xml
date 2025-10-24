@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/sys_background_dark">
+
+    <TextView
+        android:id="@+id/settings_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_title"
+        android:textSize="28sp"
+        android:textColor="@color/sys_text_primary"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btn_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_category_network"
+        android:drawableLeft="@drawable/ic_wifi"
+        android:drawablePadding="10dp"
+        android:onClick="onNetworkClicked"
+        style="@style/SettingsCategoryButton"/>
+
+    <Button
+        android:id="@+id/btn_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_category_display"
+        android:drawableLeft="@drawable/ic_display"
+        android:drawablePadding="10dp"
+        android:onClick="onDisplayClicked"
+        style="@style/SettingsCategoryButton"/>
+
+    <Button
+        android:id="@+id/btn_security"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_category_security"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="10dp"
+        android:onClick="onSecurityClicked"
+        style="@style/SettingsCategoryButton"/>
+
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_category_about"
+        android:drawableLeft="@drawable/ic_info"
+        android:drawablePadding="10dp"
+        android:onClick="onAboutClicked"
+        style="@style/SettingsCategoryButton"/>
+
+</LinearLayout>
