@@ -1,0 +1,47 @@
+# kernel/config.toml
+# Configuracoes principais do Kernel ArcanOS.
+
+title = "ArcanOS Kernel Configuration"
+version = "v0.9-alpha"
+arch = "aarch64" # Arquitetura padrao para dispositivos moveis/embarcados
+
+# ======================================================================
+# [BUILD_SETTINGS]
+# Configuracoes usadas pelo sistema de build (Bazel)
+# ======================================================================
+[build_settings]
+optimization_level = "O2" # Nivel de otimizacao para o compilador
+debug_symbols = true      # Incluir simbolos de debug (DWARF)
+compiler_flags = ["-ffunction-sections", "-fdata-sections", "-nostdlib"]
+link_flags = ["-Wl,--gc-sections", "-nostdlib"]
+
+# ======================================================================
+# [FEATURES]
+# Configuracoes booleanas para habilitar/desabilitar subsistemas
+# ======================================================================
+[features]
+enable_virtual_memory = true
+enable_multi_core = true
+enable_efi_boot = true
+enable_jit_sandbox = false   # JIT desabilitado por padrao de seguranca
+enable_usb_c_support = true
+
+# ======================================================================
+# [DRIVERS]
+# Lista de drivers que serao inclusos no kernel (array de strings)
+# ======================================================================
+[drivers]
+storage = ["nvme", "sdmmc"]
+network = ["ethernet_mac", "wifi_80211"]
+display = "framebuffer"
+input = ["i2c_touch", "keyboard_usb"]
+
+# ======================================================================
+# [MEMORY]
+# Configuracoes de memoria
+# ======================================================================
+[memory]
+# Endereco fisico de inicio do Kernel
+base_address_paddr = 0x80000000
+# Tamanho maximo de memoria que o kernel pode usar (em MB)
+max_memory_limit_mb = 4096 
