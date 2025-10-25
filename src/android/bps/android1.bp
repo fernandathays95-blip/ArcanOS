@@ -1,0 +1,67 @@
+//
+// Módulo de compilação do Launcher do Sistema Arcanos.
+// Arquivo: src/android/bps/android1.bp
+//
+
+android_app {
+    // Define o nome do módulo que será referenciado em outros lugares do AOSP
+    name: "ArcanosLauncher",
+
+    // O nome do pacote Android (o ID da aplicação)
+    // Corresponde aos pacotes em Kotlin: com.arcanos.launcher.*
+    package: "com.arcanos.launcher",
+
+    // O arquivo de manifesto principal do Android
+    manifest: "app/src/main/AndroidManifest.xml", // Simulação de caminho
+
+    // Diretórios que contêm o código-fonte (em relação a este arquivo)
+    srcs: [
+        "../../ui/*.kt",                // UI e o Drawer
+        "../../frameworks/**/*.kt",     // Core, Security, AndroidAPI
+        "../../dalvik/*.kt",            // RuntimeEnvironment
+        "../../dex/*.kt",               // DexLoader
+        "../../adb/**/*.kt",            // ShellExecutor e Debugging
+        // Incluiria mais diretórios se o projeto fosse maior
+    ],
+
+    // Módulos que esta aplicação depende
+    // Estes seriam bibliotecas ou frameworks fornecidos pelo AOSP
+    static_libs: [
+        "kotlin-stdlib",        // Biblioteca padrão do Kotlin
+        "androidx.core_core",   // Componentes base do AndroidX
+        "androidx.appcompat_appcompat",
+        "androidx.constraintlayout_constraintlayout",
+        "arcanos-util-library", // Simulação de biblioteca de utilidades Arcanos
+    ],
+
+    // Opções de compilação (SDK version)
+    // O sistema Arcanos mira em uma API base para compatibilidade
+    target_sdk_version: "current",
+    min_sdk_version: "21", // Android 5.0 (Lollipop) é um bom mínimo moderno
+
+    // Se este aplicativo deve ser incluído na imagem do sistema (necessário para um launcher)
+    privileged: true,
+    platform_apis: true, // Permite o uso de APIs restritas (para acessar dumpsys, etc.)
+
+    // Recursos (Resources)
+    resource_dirs: [
+        "app/src/main/res", // Simulação de caminho
+    ],
+}
+
+// ----------------------------------------------------------------------
+// Exemplo de como módulos internos seriam definidos (simulação do "arcanos-util")
+// ----------------------------------------------------------------------
+/*
+// Define uma biblioteca de utilidades interna que outros módulos podem usar
+kotlin_library {
+    name: "arcanos-util-library",
+    srcs: [
+        "../../util/*.kt", // Onde estaria o Log e o Singleton
+    ],
+    static_libs: [
+        "kotlin-stdlib",
+    ],
+    sdk_version: "current",
+}
+*/
