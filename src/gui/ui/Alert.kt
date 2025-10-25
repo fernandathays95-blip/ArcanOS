@@ -1,6 +1,7 @@
 // src/gui/ui/Alert.kt
-package com.arcanos.launcher.util
+package com.arcanos.launcher.gui.ui
 
+import android.content.Context
 import arcanos.ui.Toast
 import arcanos.ui.Dialog
 import arcanos.util.Log
@@ -8,29 +9,32 @@ import arcanos.util.Log
 /**
  * @brief Utilitario Singleton para exibir notificacoes (toasts) e alertas 
  * (dialogos) na interface do usuario.
- * * NOTA: Esta classe é uma SIMULACAO. Em um projeto Android real, ela
+ *
+ * NOTA: Esta classe é uma SIMULACAO. Em um projeto Android real, ela
  * usaria Contexts, FragmentManagers ou um sistema de Composables.
  */
 object Alert {
     
     /**
      * @brief Exibe uma mensagem rapida na tela (Toast).
+     * @param context O Context necessario para mostrar a UI.
      * @param message A string da mensagem a ser exibida.
      */
-    fun showToast(message: String) {
+    fun showToast(context: Context, message: String) {
         // Simula a chamada a um componente de UI
-        Toast.makeToast(message).show()
-        Log.i("Alert", "TOAST: $message")
+        Toast.makeToast(context, message).show()
+        Log.i("Alert", "TOAST: $message [via Context: ${context.javaClass.simpleName}]")
     }
 
     /**
      * @brief Exibe um dialogo de alerta com um titulo e uma mensagem.
+     * @param context O Context necessario para mostrar a UI.
      * @param title O titulo do alerta.
      * @param message A mensagem detalhada do alerta.
      */
-    fun showAlertDialog(title: String, message: String) {
+    fun showAlertDialog(context: Context, title: String, message: String) {
         // Simula a criacao e exibicao de um Dialog
-        val dialog = Dialog.Builder()
+        val dialog = Dialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
             .setPositiveButton("OK", null)
@@ -42,12 +46,19 @@ object Alert {
 }
 
 // ======================================================================
-// SIMULAÇÕES DE CLASSES DE FRAMEWORK NECESSARIAS
+// SIMULAÇÕES DE CLASSES DE FRAMEWORK NECESSARIAS (Em um mundo de mock)
 // ======================================================================
+// Nota: Em um projeto real, 'arcanos.ui.*' e 'arcanos.util.*' seriam 
+// 'android.widget.Toast', 'android.app.AlertDialog', e 'android.util.Log'.
+
+// Simula a classe Context (Apenas para fins de compilação/demonstração)
+abstract class Context { 
+    // Mocks de funcoes do Context
+}
 
 // Simula a classe Toast do Android
 object Toast {
-    fun makeToast(text: String): ToastInstance = ToastInstance(text)
+    fun makeToast(context: Context, text: String): ToastInstance = ToastInstance(text)
     class ToastInstance(val text: String) {
         fun show() { /* Simula a exibicao do toast */ }
     }
@@ -55,7 +66,7 @@ object Toast {
 
 // Simula a classe Dialog do Android
 object Dialog {
-    class Builder {
+    class Builder(context: Context) { // O Construtor precisa do Context
         private var title: String = ""
         private var message: String = ""
         private var positiveAction: (() -> Unit)? = null
@@ -93,5 +104,5 @@ object Dialog {
 object Log {
     fun i(tag: String, message: String) { println("I/$tag: $message") }
     fun e(tag: String, message: String) { println("E/$tag: $message") }
+    fun w(tag: String, message: String) { println("W/$tag: $message") }
 }
-
