@@ -1,0 +1,37 @@
+//
+// Módulo de compilação Soong para incluir e gerenciar licenças do Arcanos OS.
+// Arquivo: src/android/LICENSEs/licenses.bp
+//
+
+// Define o módulo de licença que agrupa os arquivos de licença
+license {
+    // Nome do módulo de licença
+    name: "arcanos_launcher_licenses",
+    
+    // Caminhos para os arquivos de licença.
+    // O sistema de compilação AOSP coleta estes arquivos e os empacota
+    // no produto final (geralmente em /system/etc/licenses).
+    license_path: [
+        // A licença principal do seu código Arcanos (ex: Apache 2.0)
+        "APACHE-2.0.txt", 
+        
+        // Simularia outras licenças de dependências
+        // "THIRD_PARTY_MIT.txt",
+        // "GNU_GPL_v3.txt",
+    ],
+}
+
+// Em um projeto real, você incluiria este módulo de licença no seu
+// Android App principal (ArcanosLauncher) para declarar a conformidade:
+/*
+// Atualização no src/android/bps/android1.bp
+android_app {
+    name: "ArcanosLauncher",
+    // ... outras propriedades ...
+
+    required: [
+        "arcanos_launcher_licenses", // Linka o módulo de licenças aqui
+    ],
+    // ...
+}
+*/
